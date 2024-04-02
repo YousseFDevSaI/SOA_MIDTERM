@@ -4,7 +4,7 @@
 
 2- Navigate to the backend directory and run npm install to install backend dependencies.
 
-3- Set up a MongoDB database and update the connection string in backend/.env file and call it "CONNECTIONSTRING".
+3- Set up a MongoDB database and update the connection string in backend/.env (after creation) file and call it "CONNECTIONSTRING".
 
 4- Start the backend server by running npm start in the backend directory.
 
