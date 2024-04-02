@@ -2,22 +2,22 @@ const router = require("express").Router();
 const {getMovies, createMovie, getMovieById, updateMovie, deleteMovie}= require("../Controllers/songController");
 
 // Create
-router.post('/createSong', createMovie);
+router.post('/createMovie', createMovie);
 
 // Read 
-router.get("/songs", getMovies);
+router.get("/movies", getMovies);
 
 // Read By ID
-router.options("/songById", getMovieById);
+router.options("/movieById", getMovieById);
 
 // Update
-router.put("/updateSong", updateMovie);
+router.put("/updateMovie", updateMovie);
 
 // Delete
-router.delete( "/deleteSong" , deleteMovie);
+router.delete( "/deleteMovie" , deleteMovie);
 
 
 router.get("/", (req, res) => {
-  res.send("Search for a user or a song");
+  res.send("Search for a Movie");
 });
 module.exports = router;

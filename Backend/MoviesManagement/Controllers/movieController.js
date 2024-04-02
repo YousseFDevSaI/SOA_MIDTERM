@@ -15,7 +15,7 @@ const getMovieById = (req, res) => {
 };
 
 const createMovie = async (req, res) => {
-  const Movie = new Song({
+  const movie = new Movie({
     name: req.body.name,
     genre: req.body.genre,
     addedAt: req.body.createdAt,
@@ -24,7 +24,7 @@ const createMovie = async (req, res) => {
   });
 
   try {
-    const savedMovie = await Movie.save();
+    const savedMovie = await movie.save();
     res.json(savedMovie);
   } catch (err) {
     res.send(err);

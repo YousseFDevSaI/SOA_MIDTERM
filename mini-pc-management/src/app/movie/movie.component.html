@@ -1,1 +1,80 @@
-<p>movie works!</p>
+<div>
+  <h2>Movie Management</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th>Actors</th>
+        <th>Added At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{ movie._id }}</td>
+        <td>{{ movie.name }}</td>
+        <td>{{ movie.genre }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.actors }}</td>
+        <td>{{ movie.addedAt | date }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="editMovie(movie)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteMovie(movie._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <h3 *ngIf="!showEditForm">Add New Movie</h3>
+  <form (submit)="createMovie()" *ngIf="!showEditForm">
+    <div class="form-group" >
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="newMovie.name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <input type="text" class="form-control" id="genre" [(ngModel)]="newMovie.genre" name="genre">
+    </div>
+    <div class="form-group">
+      <label for="year">Year</label>
+      <input type="text" class="form-control" id="year" [(ngModel)]="newMovie.year" name="year">
+    </div>
+    <div class="form-group">
+      <label for="actors">Actors</label>
+      <input type="text" class="form-control" id="actors" [(ngModel)]="newMovie.actors" name="actors">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button routerLink="/" style="margin: 1%;" class="btn btn-primary">Back Home</button>
+  </form>
+</div>
+
+<div>
+  <!-- Pop-out form -->
+  <div *ngIf="showEditForm" class="edit-form">
+    <h3>Edit Movie</h3>
+    <form (submit)="updateMovie()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="newMovie.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" class="form-control" id="genre" [(ngModel)]="newMovie.genre" name="genre">
+      </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="text" class="form-control" id="year" [(ngModel)]="newMovie.year" name="year">
+      </div>
+      <div class="form-group">
+        <label for="actors">Actors</label>
+        <input type="text" class="form-control" id="actors" [(ngModel)]="newMovie.actors" name="actors">
+      </div>
+      <button type="submit" style="margin: 1%;" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>
