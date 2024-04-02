@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {getMovies, createMovie, getMovieById, updateMovie, deleteMovie}= require("../Controllers/songController");
+const {getMovies, createMovie, getMovieById, updateMovie, deleteMovie}= require("../Controllers/movieController");
 
 // Create
 router.post('/createMovie', createMovie);
