@@ -1,1 +1,88 @@
-<p>user works!</p>
+<div>
+  <h2>User Management</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user._id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.user_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="editUser(user)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUser(user._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3 *ngIf="!showEditForm">Add New User</h3>
+  <form (submit)="createUser()" *ngIf="!showEditForm">
+    <div class="form-group" >
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="newUser.first_name" name="first_name">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" [(ngModel)]="newUser.last_name" name="last_name">
+    </div>
+    <div class="form-group">
+      <label for="userName">Username</label>
+      <input type="text" class="form-control" id="userName" [(ngModel)]="newUser.user_name" name="user_name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="newUser.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="email">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="newUser.password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button routerLink="/" style="margin: 1%;" class="btn btn-primary">Back Home</button>
+  </form>
+
+</div>
+
+<div>
+
+  <!-- Pop-out form -->
+  <div *ngIf="showEditForm" class="edit-form">
+    <h3>Edit User</h3>
+    <form (submit)="updateUser()">
+      <div class="form-group">
+        <label for="lastName">First Name</label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="newUser.first_name" name="first_name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="newUser.last_name" name="last_name">
+      </div>
+      <div class="form-group">
+        <label for="userName">Username</label>
+        <input type="text" class="form-control" id="userName" [(ngModel)]="newUser.user_name" name="user_name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="newUser.email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="newUser.password" name="password">
+      </div>
+      <button type="submit" style="margin: 1%;" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>
+
