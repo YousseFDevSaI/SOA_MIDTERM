@@ -40,7 +40,7 @@ const updateSong = async (req, res) => {
   
 
 const deleteSong = (req, res) => {
-  User.findByIdAndDelete(req.body.id)
+  Song.findByIdAndDelete(req.body.id)
   .then(users => res.json(users))
   .catch(err => res.send(err));
 ;

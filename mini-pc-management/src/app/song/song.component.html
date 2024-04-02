@@ -1,1 +1,60 @@
-<p>song works!</p>
+<div>
+  <h2>Song Management</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Added At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let song of songs">
+        <td>{{ song._id }}</td>
+        <td>{{ song.name }}</td>
+        <td>{{ song.genre }}</td>
+        <td>{{ song.addedAt | date }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="editSong(song)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteSong(song._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <h3 *ngIf="!showEditForm">Add New Song</h3>
+  <form (submit)="createSong()" *ngIf="!showEditForm">
+    <div class="form-group" >
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="newSong.name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <input type="text" class="form-control" id="genre" [(ngModel)]="newSong.genre" name="genre">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button routerLink="/" style="margin: 1%;" class="btn btn-primary">Back Home</button>
+  </form>
+</div>
+
+<div>
+  <!-- Pop-out form -->
+  <div *ngIf="showEditForm" class="edit-form">
+    <h3>Edit Song</h3>
+    <form (submit)="updateSong()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="newSong.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" class="form-control" id="genre" [(ngModel)]="newSong.genre" name="genre">
+      </div>
+      <button type="submit" style="margin: 1%;" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>
